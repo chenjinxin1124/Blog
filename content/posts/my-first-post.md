@@ -21,6 +21,17 @@ hugo v0.101.0-9f74196ce611cdf6d355bfb99fd8eba5c68ef7f8+extended linux/amd64 Buil
 ```
 hugo new site quickstart
 ```
+这个命令会创建一个名为 quickstart 的目录，这就是博客的根目录。目录结构如下：
+```
+├── archetypes
+│   └── default.md
+├── config.toml         # 博客站点的配置文件
+├── content             # 博客文章所在目录
+├── data                
+├── layouts             # 网站布局
+├── static              # 一些静态内容
+└── themes              # 博客主题
+```
 # Step 3: Add a Theme
 首先，从 GitHub 下载主题并将其添加到站点的主题目录中：
 ```
