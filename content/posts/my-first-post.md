@@ -50,6 +50,9 @@ draft: true
 hugo server -D
 # 可以在其它机器访问
 hugo server --bind="0.0.0.0" -D
+
+# 可以在其它机器访问, -p 修改端口
+hugo server --bind="0.0.0.0" -p 80 -D
 ```
 在 http://localhost:1313/ 导航到您的新站点。
 # 第 6 步：自定义主题
