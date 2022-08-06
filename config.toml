@@ -1,4 +1,4 @@
-baseURL = "http://114.132.247.115:1313/"
+baseURL = "http://changxiangyu.cn/"
 languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "hugo-theme-bootstrap4-blog"
@@ -32,7 +32,7 @@ summaryLength = 50
 # 顶部栏
 [[menu.navbar]]
   name = "首页"
-  url = "http://localhost:1313"
+  url = "http://changxiangyu.cn"
 
 # 侧边栏，可以写多个
 [[menu.sidebar]]
@@ -86,7 +86,7 @@ summaryLength = 50
 
   [params.sidebar]
     # Optional about block for sidebar (can be Markdown)
-    about = "我的博客[简单示例](http://localhost:1313/)."
+    about = "我的博客[简单示例](http://changxiangyu.cn/)."
 
     # 侧边栏显示最近几条文章 (Default: 5)
     #num_recent_posts = 2
