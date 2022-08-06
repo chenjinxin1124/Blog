@@ -1,6 +1,6 @@
 baseURL = "http://changxiangyu.cn/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "陈金鑫的博客"
 theme = "hugo-theme-bootstrap4-blog"
 
 # Hugo 属性设置
