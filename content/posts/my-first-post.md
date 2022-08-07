@@ -1,7 +1,21 @@
 ---
-title: "Hugo Quick Start"
+title: "Quick Start"
+author: "陈金鑫"              # 文章作者
+description : "Quick Start"    # 文章描述信息
 date: 2022-08-01T19:52:18+08:00
-draft: true
+lastmod: 2020-08-06         # 文章修改日期
+tags : [                    # 文章所属标签
+    "博客",
+]
+categories : [              # 文章所属标签
+    "博客",
+]
+keywords : [                # 文章关键词
+    "博客",
+]
+
+next: http://changxiangyu.cn/2022/08/%E4%BF%AE%E6%94%B9%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98/      # 下一篇博客地址
+prev: http://changxiangyu.cn/2020/08/%E5%9C%A8-ubuntu20.04-%E5%BB%BA%E8%AE%BE-openvpn/  # 上一篇博客地址
 ---
 # Step 1: Install Hugo
 ```

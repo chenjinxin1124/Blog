@@ -1,7 +1,22 @@
 ---
 title: "推送到GitHub"
-date: 2022-08-01T19:52:18+08:00
-draft: false
+author: "陈金鑫"              # 文章作者
+description : "推送到GitHub"    # 文章描述信息
+date: 2022-08-01            # 文章编写日期
+lastmod: 2022-08-01         # 文章修改日期
+
+tags : [                    # 文章所属标签
+    "博客",
+    "GitHub"
+]
+categories : [              # 文章所属标签
+    "博客",
+    "GitHub",
+]
+keywords : [                # 文章关键词
+    "博客",
+    "GitHub",
+]
 ---
 # 初始化本地仓库
 ```
