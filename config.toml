@@ -1,4 +1,4 @@
-baseURL = "http://changxiangyu.cn/"
+baseURL = "http://www.changxiangyu.cn/"
 languageCode = "en-us"
 title = "陈金鑫的博客"
 theme = "hugo-theme-bootstrap4-blog"
@@ -32,7 +32,7 @@ summaryLength = 50
 # 顶部栏
 [[menu.navbar]]
   name = "首页"
-  url = "http://changxiangyu.cn"
+  url = "http://www.changxiangyu.cn"
 
 # 侧边栏，可以写多个
 [[menu.sidebar]]
@@ -86,7 +86,7 @@ summaryLength = 50
 
   [params.sidebar]
     # Optional about block for sidebar (can be Markdown)
-    about = "我的博客[简单示例](http://changxiangyu.cn/)."
+    about = "我的博客[简单示例](http://www.changxiangyu.cn/)."
 
     # 侧边栏显示最近几条文章 (Default: 5)
     #num_recent_posts = 2
