@@ -51,10 +51,10 @@ if __name__ == '__main__':
     })
 
     print({
-        "容量": math.ceil(k_blocks),
-        "已用": math.ceil(used),
-        "可用": math.ceil(available),
-        "已用%": math.ceil(use),
+        "容量": f'{math.ceil(k_blocks)}G',
+        "已用": f'{math.ceil(used)}G',
+        "可用": f'{math.ceil(available)}G',
+        "已用%": f'{math.ceil(use)}%',
     })
 ```
 运行测试
