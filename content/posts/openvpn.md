@@ -1449,3 +1449,7 @@ drwxr-xr-x 5 root root 4096 Aug 22 15:19 ../
 sammy@OpenVPN:/etc/openvpn/ccd$ cat tx-cjx-master 
 ifconfig-push 10.8.0.100 10.8.0.99
 ```
+### 效果
+在开启了允许客户端证书复用的情况下。固定了 IP 的证书被重复使用时，只有最后一个使用者可以连接到服务器，IP 固定。
+未固定 IP 的证书可以正常复用。
+
