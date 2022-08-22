@@ -1393,24 +1393,59 @@ Link 22 (tun0)
 sudo rpm -i pkg/redhat8.6/pkg/*
 ```
 
-> 固定客户端端口：修改 client-sj.ovpn 第 58 行，nobind -> port 51194
+> 固定客户端端口：修改 client1.ovpn 第 58 行，nobind -> port 51194
 
 **连接**
 
 ```
-sudo cp client-sj.ovpn /etc/openvpn/client/client-sj.conf
+sudo cp client1.ovpn /etc/openvpn/client/client1.conf
 # 开机启动
-systemctl enable openvpn-client@client-sj
+systemctl enable openvpn-client@client1
 # 启动
-systemctl start openvpn-client@client-sj
+systemctl start openvpn-client@client1
 # 停止
-systemctl stop openvpn-client@client-sj
+systemctl stop openvpn-client@client1
 ```
 
 测试
 
 ```
-systemctl status openvpn-client@client-sj
+systemctl status openvpn-client@client1
 ping 10.10.0.1
 ```
+# 其它设置
+## 客户端固定端口
+修改 client1.ovpn 第 58 行，nobind -> port 51194
+## 设置 systemctl 启动
+```
+sudo cp client1.ovpn /etc/openvpn/client/client.conf
+# 开机启动
+systemctl enable openvpn-client@client1
+# 启动
+systemctl start openvpn-client@client1
+# 停止
+systemctl stop openvpn-client@client1
 
+# 测试
+systemctl status openvpn-client@client
+ping 10.8.0.1
+```
+## 固定客户端 IP
+```
+# openvpn 服务器
+vi /etc/openvpn/server/server.conf
+# 添加一行
+client-config-dir /etc/openvpn/ccd
+```
+在 /etc/openvpn/ccd 创建文件，文件名为客户端的 CN 名称，内容为`ifconfig-push ${IP} ${NETMASK}`
+
+样例：
+```
+sammy@OpenVPN:/etc/openvpn/ccd$ ll
+total 12
+drwxr-xr-x 2 root root 4096 Aug 22 15:50 ./
+drwxr-xr-x 5 root root 4096 Aug 22 15:19 ../
+-rw-r--r-- 1 root root   35 Aug 22 15:50 tx-cjx-master
+sammy@OpenVPN:/etc/openvpn/ccd$ cat tx-cjx-master 
+ifconfig-push 10.8.0.100 10.8.0.99
+```
