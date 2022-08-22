@@ -1420,11 +1420,11 @@ ping 10.10.0.1
 ```
 sudo cp client1.ovpn /etc/openvpn/client/client.conf
 # 开机启动
-systemctl enable openvpn-client@client1
+systemctl enable openvpn-client@client
 # 启动
-systemctl start openvpn-client@client1
+systemctl start openvpn-client@client
 # 停止
-systemctl stop openvpn-client@client1
+systemctl stop openvpn-client@client
 
 # 测试
 systemctl status openvpn-client@client
