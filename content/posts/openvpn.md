@@ -1385,7 +1385,7 @@ Link 22 (tun0)
 
 如果您看到您在 OpenVPN 服务器上配置的 DNS 服务器的 IP 地址，以及输出中*DNS 域*的`~.`设置，那么您已正确配置您的客户端以使用 VPN 服务器的 DNS 解析器。
 
-# 安装客户端配置
+## 安装 OpenVPN 客户端配置
 
 **离线安装**
 
@@ -1393,26 +1393,35 @@ Link 22 (tun0)
 sudo rpm -i pkg/redhat8.6/pkg/*
 ```
 
-> 固定客户端端口：修改 client1.ovpn 第 58 行，nobind -> port 51194
+配置文件
 
-**连接**
+- xxx-master.ovpn: 在 master 节点使用，会固定 VPN 的 IP，只能单节点使用。
+- xxx-worker.ovpn: 在 worker 节点使用，不会固定 VPN 的 IP，可以多节点使用。
+
+**配置使用**
+
+> 如果客户端需要固定端口的情况才操作，一般情况忽略。固定客户端端口：修改 xxx.ovpn 第 58 行，nobind -> port 51194
+
+设置 systemctl 管理
 
 ```
-sudo cp client1.ovpn /etc/openvpn/client/client1.conf
+# 复制文件
+sudo cp xxx.ovpn /etc/openvpn/client/client.conf
 # 开机启动
-systemctl enable openvpn-client@client1
+systemctl enable openvpn-client@client
 # 启动
-systemctl start openvpn-client@client1
+systemctl start openvpn-client@client
 # 停止
-systemctl stop openvpn-client@client1
+systemctl stop openvpn-client@client
 ```
 
 测试
 
 ```
-systemctl status openvpn-client@client1
+systemctl status openvpn-client@client
 ping 10.10.0.1
 ```
+
 # 其它设置
 ## 客户端固定端口
 修改 client1.ovpn 第 58 行，nobind -> port 51194
