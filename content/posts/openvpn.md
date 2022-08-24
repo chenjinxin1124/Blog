@@ -1462,3 +1462,39 @@ ifconfig-push 10.8.0.100 10.8.0.99
 在开启了允许客户端证书复用的情况下。固定了 IP 的证书被重复使用时，只有最后一个使用者可以连接到服务器，IP 固定。
 未固定 IP 的证书可以正常复用。
 
+# 安装 OpenVPN 客户端配置
+
+**离线安装**
+
+```
+sudo rpm -i pkg/redhat8.6/pkg/*
+```
+
+配置文件
+
+- xxx-master.ovpn: 在 master 节点使用，会固定 VPN 的 IP，只能单节点使用。
+- xxx-worker.ovpn: 在 worker 节点使用，不会固定 VPN 的 IP，可以多节点使用。
+
+**配置使用**
+
+> 如果客户端需要固定端口的情况才操作，一般情况忽略。固定客户端端口：修改 xxx.ovpn 第 58 行，nobind -> port 51194
+
+设置 systemctl 管理
+
+```
+# 复制文件
+sudo cp xxx.ovpn /etc/openvpn/client/client.conf
+# 开机启动
+systemctl enable openvpn-client@client
+# 启动
+systemctl start openvpn-client@client
+# 停止
+systemctl stop openvpn-client@client
+```
+
+测试
+
+```
+systemctl status openvpn-client@client
+ping 10.10.0.1
+```
