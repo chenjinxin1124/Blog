@@ -51,8 +51,53 @@ iptables -t nat -A POSTROUTING -o virbr0 -j MASQUERADE
 iptables -t nat -vnL POSTROUTING --line-number
 iptables -t nat -D POSTROUTING 20
 iptables-save
+route
+route del -net 192.168.40.0 netmask 255.255.255.0 
+route del -net 192.168.30.0 netmask 255.255.255.0
+
+route del -net 192.169.30.0 netmask 255.255.255.0 dev virbr0 
+route del -net 192.169.40.0 netmask 255.255.255.0 dev virbr1
+
+
+B:
+echo 1 > /proc/sys/net/ipv4/ip_forward
+wlo1
+iptables -t nat -A POSTROUTING -s 192.168.20.0/24 -d 192.168.40.0/24 -o wlo1 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 192.168.20.0/24 -d 192.168.40.0/24 -o virbr1 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 192.168.30.0/24 -d 192.168.40.0/24 -o virbr1 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 192.168.40.0/24 -d 192.168.30.0/24 -o virbr0 -j MASQUERADE
+
+route add -net 192.168.40.0 netmask 255.255.255.0 gw 192.168.40.205
+route add -net 192.168.30.0 netmask 255.255.255.0 gw 192.168.30.235
+
+route add -net 192.169.30.0 netmask 255.255.255.0 dev virbr0
+route add -net 192.169.40.0 netmask 255.255.255.0 dev virbr1
+
+
+A: 
+route add -net 192.168.40.0 netmask 255.255.255.0 gw 192.168.30.1 
+
+route del -net 192.168.40.0 netmask 255.255.255.0 
+route add -net 192.168.40.0 netmask 255.255.0.0 gw 192.168.3.34 dev enp1s0
+
+C: 
+route add -net 192.168.30.0 netmask 255.255.255.0 gw 192.168.40.1 
+
+route del -net 192.168.30.0 netmask 255.255.255.0
+route add -net 192.168.30.0 netmask 255.255.0.0 gw 192.168.3.34
 
 # Linux一块网卡添加多个IP地址
 https://cloud.tencent.com/developer/article/1431717
 
 https://virt-manager.org/
+
+
+# 黄总
+sudo ip addr add 10.252.3.88/29 dev ens1f1
+sudo route add 88.88.43.8 gw 10.246.1.173
+# sudo ip route add 88.88.43.0/24 via 10.246.1.173
+sudo iptables -t nat -A PREROUTING -i ens1f1 -d 10.252.3.88 -j DNAT --to 88.88.43.8
+sudo iptables -t nat -A POSTROUTING -d 88.88.43.8 -o ens1f1  -j SNAT --to-source 10.252.3.88
+
+# 查看登录日志
+sudo tail /var/log/auth.log
